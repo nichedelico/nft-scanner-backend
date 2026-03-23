@@ -4,7 +4,11 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-API-KEY"]
+}));
 app.use(express.json());
 
 const NFTGO_API_KEY = process.env.NFTGO_API_KEY;
@@ -91,3 +95,4 @@ app.get("/health", (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`NFT Proxy Server running on port ${PORT}`));
+
