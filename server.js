@@ -9,7 +9,7 @@ app.use(cors({
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-API-KEY"]
 }));
-app.use(express.json());
+app.use(express.json());app.use(express.static("public"));
 
 const NFTGO_API_KEY = process.env.NFTGO_API_KEY;
 const OPENSEA_API_KEY = process.env.OPENSEA_API_KEY;
