@@ -65,7 +65,7 @@ function sig(change,rsi,aboveMA){
 }
 function rsiEst(c){return Math.min(90,Math.max(10,50+c*8))}
 async function fetchETF(t){
-  var r=await fetch("https://query1.finance.yahoo.com/v8/finance/chart/"+t+"?interval=1d&range=60d");
+  var r=await fetch("/api/etf/"+t);
   var d=await r.json();
   var res=d.chart.result[0];
   var meta=res.meta;

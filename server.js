@@ -89,6 +89,17 @@ app.get("/api/opensea/:slug/info", async (req, res) => {
 });
 
 // ─── Health check ────────────────────────────────────────────────────────────
+app.get("/api/etf/:ticker", async (req, res) => {
+  try {
+    const { ticker } = req.params;
+    const { data } = await axios.get(
+      `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=60d`
+    );
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Yahoo Finance error" });
+  }
+});
 app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
